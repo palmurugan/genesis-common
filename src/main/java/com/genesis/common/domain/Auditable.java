@@ -16,6 +16,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author PalMurugan C
@@ -34,20 +36,24 @@ public abstract class Auditable<U> implements Serializable {
 
     @CreatedBy
     @Column(name = "CREATED_BY", nullable = false)
+    @JsonIgnore
     private U createdBy;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATED_DATE", insertable = true, updatable = false)
+    @JsonIgnore
     private Date createdDate;
 
     @LastModifiedBy
     @Column(name = "UPDATED_BY", nullable = true)
+    @JsonIgnore
     private U updatedBy;
 
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "UPDATED_DATE", insertable = false, updatable = true)
+    @JsonIgnore
     private Date updatedDate;
 
     @Column(name = "STATUS", nullable = false)
