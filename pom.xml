@@ -4,7 +4,7 @@
 	<groupId>com.github.palmurugan</groupId>
 	<artifactId>genesis-common</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.1</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>common-service</name>
 	<url>http://maven.apache.org</url>
 
