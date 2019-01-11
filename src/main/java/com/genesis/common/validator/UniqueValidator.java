@@ -6,6 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.BeanWrapperImpl;
 
 import com.genesis.common.annotation.Unique;
 import com.genesis.common.service.FieldValueExist;
@@ -38,7 +39,11 @@ public class UniqueValidator implements ConstraintValidator<Unique, Object> {
 
 	@Override
 	public boolean isValid(Object obj, ConstraintValidatorContext constraintValidatorContext) {
-		return (this.service == null) ? Boolean.TRUE : !this.service.fieldValueExists(obj, this.fieldName);
+		Object idValue = new BeanWrapperImpl(obj).getPropertyValue("id");
+		Object value = new BeanWrapperImpl(obj).getPropertyValue(this.fieldName);
+		return (this.service == null) ? Boolean.TRUE
+				: !this.service.fieldValueExists((idValue != null ? Long.parseLong(idValue.toString()) : null), value,
+						this.fieldName);
 	}
 
 }

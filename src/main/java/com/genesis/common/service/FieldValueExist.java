@@ -14,5 +14,5 @@ public interface FieldValueExist {
 	 * @return
 	 * @throws UnsupportedOperationException
 	 */
-	boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException;
+	boolean fieldValueExists(Long id, Object value, String fieldName) throws UnsupportedOperationException;
 }

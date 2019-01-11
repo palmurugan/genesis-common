@@ -12,7 +12,7 @@ import javax.validation.Payload;
 import com.genesis.common.service.FieldValueExist;
 import com.genesis.common.validator.UniqueValidator;
 
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UniqueValidator.class)
 @Documented
@@ -29,4 +29,11 @@ public @interface Unique {
 	String serviceQualifier() default "";
 
 	String fieldName();
+
+	@Target({ ElementType.TYPE, ElementType.ANNOTATION_TYPE })
+	@Retention(RetentionPolicy.RUNTIME)
+	@Documented
+	@interface List {
+		Unique[] value();
+	}
 }
