@@ -13,17 +13,17 @@ import org.springframework.data.domain.Pageable;
  * @param <E>
  * @param <K>
  */
-public interface IGenericService<E, K> {
+public interface IGenericService<D, K> {
 
-    public E saveOrUpdate(E entity);
+    public D saveOrUpdate(D dto);
 
-	public void saveOrUpdateAll(List<E> entities);
+	public void saveOrUpdateAll(List<D> dtos);
 
-    public Page<E> getAll(Pageable pageable);
+    public Page<D> getAll(Pageable pageable);
 
-    public Optional<E> get(K id);
+    public Optional<D> get(K id);
 
     public void remove(K id);
 
-	public void removeAll(List<E> entities);
+	public void removeAll(List<D> entities);
 }
