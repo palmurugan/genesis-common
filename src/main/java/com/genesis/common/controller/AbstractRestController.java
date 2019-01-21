@@ -7,6 +7,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import javax.validation.Valid;
 
+import com.genesis.common.validator.GenericValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -26,12 +27,16 @@ public abstract class AbstractRestController<D, K> {
 
 	private IGenericService<D, K> genericService;
 
-	public AbstractRestController(IGenericService<D, K> genericService) {
+	private GenericValidator<D> validator;
+
+	public AbstractRestController(IGenericService<D, K> genericService, GenericValidator<D> validator) {
 		this.genericService = genericService;
+		this.validator = validator;
 	}
 
 	@RequestMapping(method = POST)
-	public ResponseEntity<D> create(@Valid @RequestBody D dto) {
+	public ResponseEntity<D> create(@RequestBody D dto) {
+		validator.validate(dto);
 		return new ResponseEntity<>(genericService.saveOrUpdate(dto), HttpStatus.CREATED);
 	}
 
@@ -46,7 +51,8 @@ public abstract class AbstractRestController<D, K> {
 	}
 
 	@RequestMapping(value = "/{id}", method = PUT)
-	public ResponseEntity<D> updatePartyType(@PathVariable K id, @Valid @RequestBody D dto) {
+	public ResponseEntity<D> updatePartyType(@PathVariable K id, @RequestBody D dto) {
+		validator.validate(dto);
 		return new ResponseEntity<D>(genericService.saveOrUpdate(dto), HttpStatus.OK);
 	}
 
