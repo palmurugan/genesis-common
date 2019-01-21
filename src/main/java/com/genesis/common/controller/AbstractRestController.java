@@ -35,7 +35,7 @@ public abstract class AbstractRestController<D, K> {
 	}
 
 	@RequestMapping(method = POST)
-	public ResponseEntity<D> create(@RequestBody D dto) {
+	public ResponseEntity<D> create(@Valid @RequestBody D dto) {
 		validator.validate(dto);
 		return new ResponseEntity<>(genericService.saveOrUpdate(dto), HttpStatus.CREATED);
 	}
@@ -51,7 +51,7 @@ public abstract class AbstractRestController<D, K> {
 	}
 
 	@RequestMapping(value = "/{id}", method = PUT)
-	public ResponseEntity<D> updatePartyType(@PathVariable K id, @RequestBody D dto) {
+	public ResponseEntity<D> updatePartyType(@PathVariable K id, @Valid @RequestBody D dto) {
 		validator.validate(dto);
 		return new ResponseEntity<D>(genericService.saveOrUpdate(dto), HttpStatus.OK);
 	}
