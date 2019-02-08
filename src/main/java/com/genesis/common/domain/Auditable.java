@@ -31,7 +31,7 @@ public abstract class Auditable<U> {
     private Date createdDate;
 
     @LastModifiedBy
-    @Column(name = "UPDATED_BY", nullable = true)
+    @Column(name = "UPDATED_BY")
     @JsonIgnore
     private U updatedBy;
 
