@@ -14,7 +14,6 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
     @Override
     public Optional<String> getCurrentAuditor() {
-        // TODO make this name dynamic from security context
         return Optional.of("Admin");
     }
 }

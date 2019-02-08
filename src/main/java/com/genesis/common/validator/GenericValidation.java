@@ -11,7 +11,7 @@ public class GenericValidation<K> implements Validation<K> {
     }
 
     public static <K>GenericValidation<K> from (Predicate<K> predicate) {
-        return new GenericValidation<K>(predicate);
+        return new GenericValidation<>(predicate);
     }
 
     @Override

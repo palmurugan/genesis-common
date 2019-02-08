@@ -19,6 +19,6 @@ public class CommonExceptionTranslator {
 	// @ExceptionHandler(MethodArgumentNotValidException.class)
 	public final ResponseEntity<FieldError> handleFieldErrors(MethodArgumentNotValidException exception,
 			WebRequest request) {
-		return new ResponseEntity<>(ExceptionUtil.buildFieldErrorResponse(exception, request), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(ExceptionUtil.buildFieldErrorResponse(exception), HttpStatus.BAD_REQUEST);
 	}
 }
